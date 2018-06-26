@@ -23,15 +23,15 @@ except ValueError :
 #应纳税额所得额 taxIncome
 if taxIncome <= 1500 :
     taxPayable = taxIncome * 0.03
-elif taxIncome > 1500 and taxIncome < 4500 :
+elif taxIncome > 1500 and taxIncome <= 4500 :
     taxPayable = taxIncome * 0.1 - 105
-elif taxIncome > 4500 and taxIncome < 9000 :
+elif taxIncome > 4500 and taxIncome <= 9000 :
     taxPayable = taxIncome * 0.2 - 555
-elif taxIncome > 9000 and taxIncome < 35000 :
+elif taxIncome > 9000 and taxIncome <= 35000 :
     taxPayable = taxIncome * 0.25 - 1005
-elif taxIncome > 35000 and taxIncome < 55000 :
+elif taxIncome > 35000 and taxIncome <= 55000 :
     taxPayable = taxIncome * 0.3 - 2755
-elif taxIncome > 55000 and taxIncome < 80000 :
+elif taxIncome > 55000 and taxIncome <= 80000 :
     taxPayable = taxIncome * 0.35 - 5505
 else:
     taxPayable = taxIncome * 0.45 - 13505
