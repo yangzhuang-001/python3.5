@@ -132,4 +132,9 @@ print(coursesdict)
        #coursesdict.pop(2)
        #Bash
 
+       #列表：可修改有序的数据集合
+       #元组：不可修改的有序数据集合
+       #集合：无序的不重复的数据集合
+       #字典：无序的存储key:value 键值对的数据集合
+
 
