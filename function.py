@@ -147,9 +147,79 @@ print(result6)
 #那么这些参数会自动生成一个元组传入函数。
 
 
-#关键字函数
+#关键字参数
+#以上三种函数的参数（必选参数，默认参数，可变参数）在赋值时可以不写参数名
+#而关键字参数允许传入零个或任意多个带参数名的参数
+#参数名可以自定义，这些关键字参数会在函数内部自动生成一个字典，用来扩展函数的功能。
+
+#关键字参数的定义格式是在参数名前加上 ** ,参数名可以自定义 例如 **kw
+
+#注意在函数体内部使用该参数时，前面不要加**
+
+def connect(ipaddress,*ports,**kw):
+    print('IP:',ipaddress)
+    for port in ports:
+        print('Port:',port)
+    for key,value in kw.items():
+        print('{}:{}'.format(key,value))
+
+paramses = (25,23,22)
+prop = {'device':'eth0','proto':'static'}
+result9 = connect('192.168.1.1',*paramses,**prop)
+print(result9)
+#对关键字参数传参时可以使用字典（注意：字典的key 值数据类型必须是字符串）
+
+#也可以直接传关键字参数，就是带参数名的参数
 
 
+#命名关键字参数
+#赋值时必须写上参数名。此参数的特征就是前面有一个用逗号隔开的 * 。
+#例如：
+# def test(m,*,a.b) 其中m为必选参数，a和b 就是命名关键字参数
+#用户调用函数时，每一个命名关键字参数都必须使用相应的参数名赋值，否则会抛出typeerror
 
-#if __name__ == '__main__':
+def hello(*,name):
+    print('hello',name)
 
+bb = hello(name='zhangsan')
+print(bb)
+
+#函数中修改参数的值
+
+#函数参数传值：函数调用过程中，在函数内部用到的参数只是一个局部变量，在函数执行结束后就销毁了。
+#不影响调用该函数的外部参数变量的值。
+
+#函数参数传引用：传递给函数的参数就是外部使用的参数，函数执行过程中
+#对该参数进行的任何修改都会保留，
+# 当函数调用结束后，这个参数被其他代码使用中的都是函数修改过后的数据
+
+#python 函数的参数是没有类型的，可以传递任意类型的对象作为参数
+#不同类型的参数在函数中，有的可以修改，有的不可以修改
+
+#举例
+def connect(ipaddress,ports):
+    print('Ip:',ipaddress)
+    print('Ports:',ports)
+    #此处实际是创建了一个新的局部变量，并不是修改了ipaddress的值
+    ipaddress = '10.10.10.1'
+    #修改ports 列表的值，使用append 向列表中增加一个元素，会影响到传入的列表 ports的值
+    ports.append(8080)
+
+#python中的对象有不可变对象，指的是数值、字符串、元组等
+              #可变对象：列表、字典等
+
+#如果是不可变对象作为参数，在函数中对该参数的修改只能用等号赋值
+#实际上是创建了一个新的局部变量。
+#如果是可变对象作为参数，函数中的修改会保留。
+
+
+if __name__ == '__main__':
+    ipaddress = '192.168.1.1'
+    ports = [22,23,24]
+    print(ipaddress)
+    print(ports)
+    connect(ipaddress,ports)
+    print(ipaddress)
+    print(ports)
+
+#函数学习总结：
